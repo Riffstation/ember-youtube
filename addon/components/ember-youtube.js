@@ -231,7 +231,7 @@ export default Ember.Component.extend({
 
 	startTimer: function () {
 		const player = this.get('player');
-		const interval = 1000;
+		const interval = 40;
 
 		// set initial times
 		this.setProperties({
