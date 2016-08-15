@@ -84,18 +84,21 @@ export default Ember.Component.extend({
 		const playerVars = this.get('playerVars');
 		const width = this.get('width');
 		const height = this.get('height');
-		let player = new YT.Player($iframe[0], {
-			width,
-			height,
-			playerVars,
-			events: {
-				onReady: this.onPlayerReady.bind(this),
-				onStateChange: this.onPlayerStateChange.bind(this),
-				onError: this.onPlayerError.bind(this)
-			}
-		});
-
-		this.set('player', player);
+		//to avoid problems with testing
+		if (typeof $iframe !== 'undefined' && typeof $iframe[0] !== 'undefined') {
+        		let player = new YT.Player($iframe[0], {
+        			width,
+        			height,
+        			playerVars,
+        			events: {
+        				onReady: this.onPlayerReady.bind(this),
+        				onStateChange: this.onPlayerStateChange.bind(this),
+        				onError: this.onPlayerError.bind(this)
+        			}
+        		});
+        
+        		this.set('player', player);
+		}
 	},
 
 	// Gets called by the YouTube player.
